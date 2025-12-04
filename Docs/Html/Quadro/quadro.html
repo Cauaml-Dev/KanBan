@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Tarefas</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="" alt="logo">
+        <select name="menu" id="menu">
+            <option value="kanban">Kanban</option>
+            <option value="novoUsuario">Nova Usuario</option>
+            <option value="novaTarefa">Nova Tarefa</option>
+        </select>
+    </header>
+
+    <main>
+
+        <div class="columns">
+
+
+            <!-- A Fazer -->
+            <div class="task-column-todo" id="todo">
+                <h3>A Fazer</h3>
+            </div>
+
+            <!-- Fazendo -->
+            <div class="task-column-doing" id="doing">
+                <h3>Fazendo</h3>
+            </div>
+
+            <!-- Pronto -->
+            <div class="task-column-done" id="done">
+                <h3>Pronto</h3>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="./js/quadro.js"></script>
+</body>
+
+</html>
