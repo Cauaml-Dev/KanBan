@@ -24,10 +24,11 @@ async function criarTabelas() {
     await executarQuery(`
       CREATE TABLE IF NOT EXISTS tarefa(
         id_tarefa INT AUTO_INCREMENT PRIMARY KEY,
-        Nome_tarefa VARCHAR(100),
-        Descricao_tarefa VARCHAR(150),
-        Prioridade_tarefa VARCHAR(30),
-        Status_tarefa VARCHAR(30),
+        Nome_tarefa VARCHAR(100) NOT NULL,
+        Descricao_tarefa VARCHAR(150) NOT NULL,
+        Prioridade_tarefa VARCHAR(30) NOT NULL,
+        Status_tarefa ENUM('a fazer', 'em andamento', 'concluido') NOT NULL DEFAULT 'a fazer',
+        Data_criacao DATE NOT NULL DEFAULT CURDATE(),
         Data_inicio DATE,
         Data_conclusao DATE,
         id_usuario INT NOT NULL,

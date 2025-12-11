@@ -5,22 +5,23 @@
     box-sizing: border-box;
 }
 
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f7f6; /* Um fundo levemente cinza, como na imagem */
     color: #333;
 }
 
-/* Estilos do Cabeçalho */
-.main-header {
+/* ================================
+   HEADER DO CADASTRO
+================================ */
+#header-cadastro {
     background-color: #007bff; /* Azul brilhante */
     color: white;
     padding: 15px 30px;
     width: 100%;
 }
 
-.main-nav {
+#nav-cadastro {
     display: flex;
     justify-content: space-between; /* Título na esquerda, links na direita */
     align-items: center;
@@ -28,67 +29,71 @@ body {
     margin: 0 auto; /* Centraliza o conteúdo da navegação */
 }
 
-.nav-title {
+#titulo-cadastro {
     font-size: 1.5rem; /* 24px */
     font-weight: bold;
 }
 
+/* Botão de sair (se existir no futuro) */
 .bnt-exit {
-    background-color: #dc3545; /* Um tom de vermelho (cor de "perigo") */
-    color: white;              /* Cor do texto "X" */
-    border: none;              /* Remove a borda padrão */
-    padding: 5px 12px;         /* Espaçamento interno (altura, largura) */
-    font-size: 1.2rem;         /* Tamanho do "X" */
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    font-size: 1.2rem;
     font-weight: bold;
-    border-radius: 5px;        /* Bordas arredondadas */
-    cursor: pointer;           /* Muda o mouse para "mãozinha" */
-    transition: background-color 0.3s ease; /* Efeito suave na cor */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Efeito ao passar o mouse */
 .bnt-exit:hover {
-    background-color: #c82333; /* Um vermelho mais escuro */
+    background-color: #c82333;
 }
 
-
-/* Estilos do Conteúdo Principal e Formulário */
-.container {
+/* ================================
+   MAIN DO CADASTRO + FORMULÁRIO
+================================ */
+#main-cadastro {
     max-width: 1200px;
-    margin: 30px auto; /* Centraliza e dá espaço do topo */
-    padding: 0 30px; /* Alinha com o padding do header */
-    background-color: #ffffff; /* Fundo branco para a área de conteúdo */
-    min-height: 80vh; /* Garante que o fundo branco se estenda */
+    margin: 30px auto;
+    padding: 0 30px;
+    background-color: #ffffff;
+    min-height: 80vh;
 }
 
-h1 {
-    font-size: 1.75rem; /* 28px */
+#main-cadastro h1 {
+    font-size: 1.75rem;
     color: #000;
     margin-bottom: 25px;
-    padding-top: 20px; /* Espaço no topo do H1 */
+    padding-top: 20px;
 }
 
+/* Grupo de campos */
 .form-group {
-    margin-bottom: 20px; /* Espaço entre cada campo do formulário */
+    margin-bottom: 20px;
 }
 
 .form-group label {
-    display: block; /* Faz o label ficar em sua própria linha */
+    display: block;
     margin-bottom: 5px;
-    font-weight: normal; /* A fonte não parece ser negrito na imagem */
+    font-weight: normal;
 }
 
-/* Estiliza inputs de texto e caixas de seleção */
+/* Inputs e selects */
 .form-group input[type="text"],
 .form-group select {
-    width: 350px; /* Largura fixa como na imagem */
+    width: 350px;
     padding: 10px;
     font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px; /* Bordas levemente arredondadas */
-    background-color: #fdfdfd; /* Fundo do input */
+    border-radius: 4px;
+    background-color: #fdfdfd;
 }
 
-/* Botão de Cadastro */
+/* ================================
+   BOTÕES
+================================ */
 .btn-submit {
     background-color: #007bff;
     color: white;
@@ -101,7 +106,7 @@ h1 {
 }
 
 .btn-submit:hover {
-    background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+    background-color: #0056b3;
 }
 
 .btn-cancel {
@@ -116,5 +121,5 @@ h1 {
 }
 
 .btn-cancel:hover {
-    background-color: #ac2a0a; /* Cor mais escura ao passar o mouse */
+    background-color: #ac2a0a;
 }

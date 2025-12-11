@@ -8,8 +8,8 @@
 body {
     background: #f2f2f2;
 }
-
-header {
+/* HEADER DO QUADRO */
+#header-quadro {
     background: #007bff;
     color: #fff;
     padding: 20px;
@@ -18,47 +18,53 @@ header {
     align-items: center;
 }
 
-header h1 {
+#header-quadro h1 {
     font-size: 22px;
 }
 
-nav a {
+#header-quadro nav a {
     color: white;
     margin-left: 20px;
     text-decoration: none;
     font-weight: bold;
 }
 
-main {
+/* MAIN DO QUADRO */
+#main-quadro {
     padding: 20px;
 }
 
-.columns {
+/* COLUNAS DO KANBAN */
+#columns-quadro {
     display: flex;
     gap: 20px;
 }
 
-.task-column-todo {
+/* COLUNA A FAZER */
+#todo {
     border-radius: 10px;
     height: 750px;
     background-color: #d9534f;
     width: 33%;
 }
 
-.task-column-doing {
+/* COLUNA FAZENDO */
+#doing {
     border-radius: 10px;
     height: 750px;
-    background-color: #0a66c2;
+    background-color: #fbff00;
     width: 33%;
 }
 
-.task-column-done {
+/* COLUNA PRONTO */
+#done {
     border-radius: 10px;
     height: 750px;
     background-color: #28a745;
     width: 33%;
 }
 
+/* CARTÕES DE TAREFA */
 .task-card {
     background: white;
     padding: 15px;
@@ -67,12 +73,14 @@ main {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* AÇÕES */
 .actions {
     margin-top: 10px;
     display: flex;
     gap: 10px;
 }
 
+/* BOTÕES */
 button {
     padding: 6px 12px;
     border: none;
@@ -90,12 +98,14 @@ button {
     color: white;
 }
 
+/* SELECT DE STATUS */
 .status-select {
     width: 100%;
     margin-top: 10px;
     padding: 6px;
 }
 
+/* BOTÃO DE MUDAR STATUS */
 .change-status {
     margin-top: 5px;
     width: 100%;
@@ -103,8 +113,8 @@ button {
     color: white;
 }
 
+/* BOTÃO DE ADICIONAR */
 .add-btn {
-
     background: #28a745;
     color: white;
     padding: 10px 20px;
@@ -112,6 +122,7 @@ button {
     font-size: 16px;
 }
 
+/* TÍTULOS DAS COLUNAS */
 h3 {
     margin-top: 20px;
     text-align: center;

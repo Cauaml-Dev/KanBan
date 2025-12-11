@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<%- include('./partials/head') %>
+
+    <body id="body-quadro">
+
+        <header id="header-quadro">
+            <img id="logo-quadro" src="" alt="logo">
+            <select name="menu" id="menu-quadro">
+                <option value="kanban">Kanban</option>
+                <option value="novoUsuario">Nova Usuario</option>
+                <option value="novaTarefa">Nova Tarefa</option>
+            </select>
+        </header>
+
+        <main id="main-quadro">
+
+            <div class="columns" id="columns-quadro">
+
+                <!-- A Fazer -->
+                <div class="task-column-todo" id="todo">
+                    <h3 id="title-todo">A Fazer</h3>
+                </div>
+
+                <!-- Fazendo -->
+                <div class="task-column-doing" id="doing">
+                    <h3 id="title-doing">Fazendo</h3>
+                </div>
+
+                <!-- Pronto -->
+                <div class="task-column-done" id="done">
+                    <h3 id="title-done">Pronto</h3>
+                </div>
+
+            </div>
+        </main>
+
+        <script>
+            const menu = document.getElementById('menu-quadro')
+
+            menu.addEventListener('change', (e) => {
+                window.location.href = menu.value
+            })
+        </script>
+
+    </body>
+
+</html>

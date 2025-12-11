@@ -1,0 +1,402 @@
+/* Inicio do css Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* Final do css Reset */
+
+/* Adicione a partir daqui eu CSS */
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+/* INICIO DO CSS CUSTOMIZADO                                                                                              */
+/*------------------------------------------------------------------------------------------------------------------------*/
+
+
+/* HEADER DO QUADRO */
+#header-quadro {
+    background: #007bff;          /* Cor de fundo azul do header */
+    color: #fff;                  /* Texto branco */
+    padding: 20px;                /* Espaçamento interno */
+    display: flex;                /* Layout flexível */
+    justify-content: space-between; /* Espaço entre os elementos (logo e menu) */
+    align-items: center;          /* Alinha verticalmente ao centro */
+}
+
+/* Título dentro do header */
+#header-quadro h1 {
+    font-size: 22px;              /* Tamanho do título */
+}
+
+/* Links dentro do nav do header */
+#header-quadro nav a {
+    color: white;                 /* Cor do texto */
+    margin-left: 20px;            /* Espaço entre os links */
+    text-decoration: none;        /* Remove sublinhado */
+    font-weight: bold;            /* Deixa o texto em negrito */
+}
+
+/* ÁREA PRINCIPAL DO QUADRO */
+#main-quadro {
+    padding: 20px;                /* Espaçamento interno */
+}
+
+/* CONTÊINER DAS COLUNAS DO KANBAN */
+#columns-quadro {
+    display: flex;                /* Colunas lado a lado */
+    gap: 20px;                    /* Espaço entre as colunas */
+}
+
+/* COLUNA "A FAZER" */
+#todo {
+    border-radius: 10px;          /* Bordas arredondadas */
+    height: 750px;                /* Altura fixa da coluna */
+    background-color: #d9534f;    /* Vermelho */
+    width: 33%;                   /* Ocupa 1/3 da largura */
+}
+
+/* COLUNA "FAZENDO" */
+#doing {
+    border-radius: 10px;
+    height: 750px;
+    background-color: #fbff00;    /* Amarelo */
+    width: 33%;
+}
+
+/* COLUNA "PRONTO" */
+#done {
+    border-radius: 10px;
+    height: 750px;
+    background-color: #28a745;    /* Verde */
+    width: 33%;
+}
+
+/* CARTÕES DE TAREFA */
+.task-card {
+    background: white;            /* Fundo branco */
+    padding: 15px;                /* Espaçamento interno */
+    border-radius: 8px;           /* Bordas arredondadas */
+    margin-top: 10px;             /* Espaço entre os cards */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* CONTÊINER DOS BOTÕES DE AÇÃO */
+.actions {
+    margin-top: 10px;             /* Espaço acima */
+    display: flex;                /* Botões lado a lado */
+    gap: 10px;                    /* Espaço entre eles */
+}
+
+/* ESTILO PADRÃO DOS BOTÕES */
+button {
+    padding: 6px 12px;            /* Tamanho do botão */
+    border: none;                 /* Remove borda padrão */
+    border-radius: 4px;           /* Bordas arredondadas */
+    cursor: pointer;              /* Cursor de clique */
+}
+
+/* BOTÃO DE EDITAR */
+.edit {
+    background: #0a66c2;          /* Azul */
+    color: white;                 /* Texto branco */
+}
+
+/* BOTÃO DE DELETAR */
+.delete {
+    background: #d9534f;          /* Vermelho */
+    color: white;
+}
+
+/* SELECT PARA MUDAR STATUS */
+.status-select {
+    width: 100%;                  /* Ocupa toda a largura */
+    margin-top: 10px;             /* Espaço acima */
+    padding: 6px;                 /* Espaçamento interno */
+}
+
+/* BOTÃO PARA CONFIRMAR MUDANÇA DE STATUS */
+.change-status {
+    margin-top: 5px;
+    width: 100%;                  /* Botão ocupa toda a largura */
+    background: #28a745;          /* Verde */
+    color: white;
+}
+
+/* BOTÃO DE ADICIONAR NOVA TAREFA */
+.add-btn {
+    background: #28a745;          /* Verde */
+    color: white;
+    padding: 10px 20px;           /* Tamanho maior */
+    margin-bottom: 20px;          /* Espaço abaixo */
+    font-size: 16px;              /* Texto maior */
+}
+
+/* TÍTULOS DAS COLUNAS */
+h3 {
+    margin-top: 20px;             /* Espaço acima */
+    text-align: center;           /* Centraliza o texto */
+}
+
+/* ================================
+   HEADER DO CADASTRO
+================================ */
+#header-cadastro {
+    background-color: #007bff; /* Azul brilhante */
+    color: white;
+    padding: 15px 30px;
+    width: 100%;
+}
+
+#nav-cadastro {
+    display: flex;
+    justify-content: space-between; /* Título na esquerda, links na direita */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza o conteúdo da navegação */
+}
+
+#titulo-cadastro {
+    font-size: 1.5rem; /* 24px */
+    font-weight: bold;
+}
+
+/* Botão de sair (se existir no futuro) */
+.bnt-exit {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.bnt-exit:hover {
+    background-color: #c82333;
+}
+
+/* ================================
+   MAIN DO CADASTRO + FORMULÁRIO
+================================ */
+#main-cadastro {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 30px;
+    background-color: #ffffff;
+    min-height: 80vh;
+}
+
+#main-cadastro h1 {
+    font-size: 1.75rem;
+    color: #000;
+    margin-bottom: 25px;
+    padding-top: 20px;
+}
+
+/* Grupo de campos */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
+/* Inputs e selects */
+.form-group input[type="text"],
+.form-group select {
+    width: 350px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fdfdfd;
+}
+
+/* ================================
+   BOTÕES
+================================ */
+.btn-submit {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+.btn-cancel {
+    background-color: #e43205;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #ac2a0a;
+}
+
+/* ================================
+   HEADER DO CADASTRO DE TAREFAS
+================================ */
+#header-tarefa {
+    background-color: #007bff; /* Azul brilhante */
+    color: white;
+    padding: 15px 30px;
+    width: 100%;
+}
+
+#nav-tarefa {
+    display: flex;
+    justify-content: space-between; /* Título na esquerda, links na direita */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza o conteúdo da navegação */
+}
+
+#titulo-tarefa {
+    font-size: 1.5rem; /* 24px */
+    font-weight: bold;
+}
+
+/* Botão de sair (caso exista) */
+.bnt-exit {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.bnt-exit:hover {
+    background-color: #c82333;
+}
+
+/* ================================
+   MAIN + FORMULÁRIO
+================================ */
+#main-tarefa {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 30px;
+    background-color: #ffffff;
+    min-height: 80vh;
+}
+
+#h1-tarefa {
+    font-size: 1.75rem;
+    color: #000;
+    margin-bottom: 25px;
+    padding-top: 20px;
+}
+
+/* Grupo de campos */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
+/* Inputs e selects */
+.form-group input[type="text"],
+.form-group select {
+    width: 350px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fdfdfd;
+}
+
+/* ================================
+   BOTÕES
+================================ */
+.btn-submit {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+.btn-cancel {
+    background-color: #e43205;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #ac2a0a;
+}
