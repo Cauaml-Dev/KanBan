@@ -6,42 +6,274 @@
     <body id="body-quadro">
 
         <header id="header-quadro">
-            <img id="logo-quadro" src="" alt="logo">
+            <nav id="nav-quadro">
+                <img id="logo-quadro" src="/img/codebreakers.png" alt="logo">
+                <div id="titulo-quadro">Quadro Kanban</div>
+            </nav>
+
             <select name="menu" id="menu-quadro">
-                <option value="kanban">Kanban</option>
-                <option value="novoUsuario">Nova Usuario</option>
-                <option value="novaTarefa">Nova Tarefa</option>
+                <option value="">Selecione...</option>
+                <option value="/kanban">Kanban</option>
+                <option value="/novoUsuario">Novo Usuario</option>
+                <option value="/novaTarefa">Nova Tarefa</option>
             </select>
         </header>
 
         <main id="main-quadro">
 
+            <button class="add-btn" onclick="window.location.href='/novaTarefa'">
+                + Adicionar Tarefa
+            </button>
+
             <div class="columns" id="columns-quadro">
 
                 <!-- A Fazer -->
-                <div class="task-column-todo" id="todo">
-                    <h3 id="title-todo">A Fazer</h3>
+                <div class="task-column task-column-todo">
+                    <h3>A Fazer</h3>
+                    <% if (dados.aFazer && dados.aFazer.length> 0) { %>
+                        <% dados.aFazer.forEach(t=> { %>
+                            <div class="task-card" data-id="<%= t.id_tarefa %>"
+                                data-prioridade="<%= t.Prioridade_tarefa %>" draggable="true">
+                                <div class="task-title">
+                                    <%= t.Nome_tarefa %>
+                                </div>
+                                <div class="task-desc">
+                                    <%= t.Descricao_tarefa %>
+                                </div>
+                                <div class="task-setor">Setor: <%= t.Nome_setor %>
+                                </div>
+                                <div class="task-date">Criado em: <%= new
+                                        Date(t.Data_criacao).toLocaleDateString('pt-BR') %>
+                                </div>
+                                <div class="task-priority">Prioridade: <%= t.Prioridade_tarefa %>
+                                </div>
+                                <div class="task-buttons">
+                                    <button class="btn-editar" data-id="<%= t.id_tarefa %>"
+                                        data-titulo="<%= t.Nome_tarefa %>" data-descricao="<%= t.Descricao_tarefa %>"
+                                        data-setor="<%= t.Nome_setor %>" data-usuario="<%= t.Id_usuario %>"
+                                        data-prioridade="<%= t.Prioridade_tarefa %>"
+                                        data-conclusao="<%= t.Data_conclusao ? t.Data_conclusao.toISOString().split('T')[0] : '' %>"
+                                        onclick="openEditModal(this)">
+                                        Editar
+                                    </button>
+                                    <button class="btn-delete" onclick="deleteTask(<%= t.id_tarefa %>)"> 🗑️ </button>
+                                </div>
+                            </div>
+                            <% }) %>
+                                <% } %>
                 </div>
 
                 <!-- Fazendo -->
-                <div class="task-column-doing" id="doing">
-                    <h3 id="title-doing">Fazendo</h3>
+                <div class="task-column task-column-doing">
+                    <h3>Fazendo</h3>
+                    <% if (dados.fazendo && dados.fazendo.length> 0) { %>
+                        <% dados.fazendo.forEach(t=> { %>
+                            <div class="task-card" data-id="<%= t.id_tarefa %>"
+                                data-prioridade="<%= t.Prioridade_tarefa %>" draggable="true">
+                                <div class="task-title">
+                                    <%= t.Nome_tarefa %>
+                                </div>
+                                <div class="task-desc">
+                                    <%= t.Descricao_tarefa %>
+                                </div>
+                                <div class="task-setor">Setor: <%= t.Nome_setor %>
+                                </div>
+                                <div class="task-date">Criado em: <%= new
+                                        Date(t.Data_criacao).toLocaleDateString('pt-BR') %>
+                                </div>
+                                <div class="task-priority">Prioridade: <%= t.Prioridade_tarefa %>
+                                </div>
+                                <div class="task-buttons">
+                                    <button class="btn-editar" data-id="<%= t.id_tarefa %>"
+                                        data-titulo="<%= t.Nome_tarefa %>" data-descricao="<%= t.Descricao_tarefa %>"
+                                        data-setor="<%= t.Nome_setor %>" data-usuario="<%= t.Id_usuario %>"
+                                        data-prioridade="<%= t.Prioridade_tarefa %>"
+                                        data-conclusao="<%= t.Data_conclusao ? t.Data_conclusao.toISOString().split('T')[0] : '' %>"
+                                        onclick="openEditModal(this)">
+                                        Editar
+                                    </button>
+                                    <button class="btn-delete" onclick="deleteTask(<%= t.id_tarefa %>)"> 🗑️ </button>
+                                </div>
+                            </div>
+                            <% }) %>
+                                <% } %>
                 </div>
 
                 <!-- Pronto -->
-                <div class="task-column-done" id="done">
-                    <h3 id="title-done">Pronto</h3>
+                <div class="task-column task-column-done">
+                    <h3>Pronto</h3>
+                    <% if (dados.concluido && dados.concluido.length> 0) { %>
+                        <% dados.concluido.forEach(t=> { %>
+                            <div class="task-card concluido" data-id="<%= t.id_tarefa %>"
+                                data-prioridade="<%= t.Prioridade_tarefa %>" draggable="true">
+                                <div class="task-title"> ✅ <%= t.Nome_tarefa %>
+                                </div>
+                                <div class="task-desc">
+                                    <%= t.Descricao_tarefa %>
+                                </div>
+                                <div class="task-setor">Setor: <%= t.Nome_setor %>
+                                </div>
+                                <div class="task-date">Criado em: <%= new
+                                        Date(t.Data_criacao).toLocaleDateString('pt-BR') %>
+                                </div>
+                                <div class="task-priority">Prioridade: <%= t.Prioridade_tarefa %>
+                                </div>
+                                <div class="task-buttons">
+                                    <button class="btn-editar" data-id="<%= t.id_tarefa %>"
+                                        data-titulo="<%= t.Nome_tarefa %>" data-descricao="<%= t.Descricao_tarefa %>"
+                                        data-setor="<%= t.Nome_setor %>" data-usuario="<%= t.Id_usuario %>"
+                                        data-prioridade="<%= t.Prioridade_tarefa %>"
+                                        data-conclusao="<%= t.Data_conclusao ? t.Data_conclusao.toISOString().split('T')[0] : '' %>"
+                                        onclick="openEditModal(this)">
+                                        Editar
+                                    </button>
+                                    <button class="btn-delete" onclick="deleteTask(<%= t.id_tarefa %>)"> 🗑️ </button>
+                                </div>
+                            </div>
+                            <% }) %>
+                                <% } %>
                 </div>
 
             </div>
         </main>
 
-        <script>
-            const menu = document.getElementById('menu-quadro')
+        <!-- MODAL DE EDIÇÃO -->
+        <div id="edit-modal" class="modal">
+            <div class="modal-content">
+                <h2>Editar Tarefa</h2>
+                <form id="edit-form" method="POST">
+                    <input type="hidden" id="edit-id" name="id">
 
-            menu.addEventListener('change', (e) => {
-                window.location.href = menu.value
-            })
+                    <label>Título:</label>
+                    <input type="text" id="edit-titulo" name="titulo" required>
+
+                    <label>Descrição:</label>
+                    <textarea id="edit-descricao" name="descricao" rows="3" required></textarea>
+
+                    <label>Setor:</label>
+                    <input type="text" id="edit-setor" name="setor" required>
+
+                    <label>Responsável:</label>
+                    <select id="edit-usuario" name="Id_usuario" required>
+                        <option value="">Selecione...</option>
+                        <% dados.usuarios.forEach(u=> { %>
+                            <option value="<%= u.id_usuario %>">
+                                <%= u.Nome_usuario %>
+                            </option>
+                            <% }) %>
+                    </select>
+
+                    <label>Prioridade:</label>
+                    <select id="edit-prioridade" name="prioridade" required>
+                        <option value="">Selecione...</option>
+                        <option value="baixa">Baixa</option>
+                        <option value="media">Média</option>
+                        <option value="alta">Alta</option>
+                    </select>
+
+                    <label>Data de Conclusão:</label>
+                    <input type="date" id="edit-conclusao" name="Data_conclusao">
+
+                    <div class="modal-buttons">
+                        <button type="submit" class="btn-save">Salvar</button>
+                        <button type="button" class="btn-close" onclick="closeModal()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            /* MENU */
+            const menu = document.getElementById('menu-quadro');
+            menu.addEventListener('change', () => {
+                if (menu.value) window.location.href = menu.value;
+            });
+
+            /* MODAL */
+            function openEditModal(btn) {
+                document.getElementById("edit-id").value = btn.dataset.id;
+                document.getElementById("edit-titulo").value = btn.dataset.titulo;
+                document.getElementById("edit-descricao").value = btn.dataset.descricao;
+                document.getElementById("edit-setor").value = btn.dataset.setor;
+                document.getElementById("edit-usuario").value = btn.dataset.usuario || "";
+                document.getElementById("edit-prioridade").value = btn.dataset.prioridade || "";
+                document.getElementById("edit-conclusao").value = btn.dataset.conclusao || "";
+
+                document.getElementById("edit-form").action = "/tarefas/editar/" + btn.dataset.id;
+                document.getElementById("edit-modal").style.display = "flex";
+            }
+
+            function closeModal() {
+                document.getElementById("edit-modal").style.display = "none";
+            }
+
+            /* DRAG & DROP */
+            document.querySelectorAll('.task-card').forEach(card => {
+                card.addEventListener('dragstart', e => {
+                    e.dataTransfer.setData('id', card.dataset.id);
+                    card.classList.add('dragging');
+                });
+
+                card.addEventListener('dragend', () => {
+                    card.classList.remove('dragging');
+                });
+            });
+
+            document.querySelectorAll('.task-column').forEach(col => {
+
+                col.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    col.classList.add('drag-over');
+                });
+
+                col.addEventListener('dragleave', () => {
+                    col.classList.remove('drag-over');
+                });
+
+                col.addEventListener('drop', async e => {
+                    e.preventDefault(); // garante que o drop seja tratado por nós
+                    col.classList.remove('drag-over');
+
+                    const id = e.dataTransfer.getData('id');
+                    const card = document.querySelector(`[data-id="${id}"]`);
+                    col.appendChild(card); // feedback imediato no front
+
+                    // Mapear título da coluna -> status do banco
+                    const titulo = col.querySelector('h3').innerText.trim().toLowerCase();
+                    let novoStatus = "";
+                    if (titulo === "a fazer") novoStatus = "a fazer";
+                    else if (titulo === "fazendo") novoStatus = "em andamento";
+                    else if (titulo === "pronto") novoStatus = "concluido";
+
+                    // Enviar em x-www-form-urlencoded (Express parseia req.body)
+                    const body = `Status_tarefa=${encodeURIComponent(novoStatus)}`;
+
+                    const resp = await fetch(`/tarefas/editar/${id}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body
+                    });
+
+                    // Se quiser evitar o reload, remova a linha abaixo
+                    window.location.href = "/kanban";
+                });
+            });
+
+            async function deleteTask(id) {
+                if (confirm("Tem certeza que deseja excluir esta tarefa?")) {
+                    const resp = await fetch(`/tarefas/excluir/${id}`, {
+                        method: "POST"
+                    });
+                    if (resp.ok) {
+                        // Remove o card do DOM imediatamente
+                        document.querySelector(`[data-id="${id}"]`).remove();
+                    } else {
+                        alert("Erro ao excluir a tarefa.");
+                    }
+                }
+            }
         </script>
 
     </body>

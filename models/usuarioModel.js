@@ -1,96 +1,76 @@
-const dbConnect = require('../db/dbConnect.js')
+const dbConnect = require('../db/dbConnect.js');
 
-// CRUD PARA CADA CLASSE DA TABELA
 class Usuario {
 
+    // CREATE
+    // ==============================================================================
+    static async createUsuario(dados) {
+        console.log('mainModel.js', 'Usuario.createUsuario()');
 
-    //CREATE
-    //==============================================================================
-    static async createUsuario(dados){
+        const { Nome_usuario, Email_usuario } = dados;
 
-        const { campo1, campo2, campo3 } = dados //Colocar os atributos da tabela tarefa 
-        // debug da função
-        console.log('mainModel.js','Usuario.createUsuario()')
-        console.log(arguments);
+        const query = `
+            INSERT INTO usuario
+            (Nome_usuario, Email_usuario)
+            VALUES (?, ?)
+        `;
 
-
-        return await dbConnect.executarQuery(
-            'INSERT INTO tabelaTarefa(campo1, campo2, campo3) VALUES (?, ?, ?)',
-            [campo1, campo2, campo3]
-        )
-
-    }        
-
-    //READ
-    //==============================================================================
-    static async readAllUsuario(){
-        
-        // debug da função
-        console.log('mainModel.js','Usuario.readAllUsuario');
-        console.log(arguments);
-
-
-        return await dbConnect.executarQuery('SELECT * FROM tabelaTarefa');
+        return await dbConnect.executarQuery(query, [
+            Nome_usuario,
+            Email_usuario
+        ]);
     }
 
 
-    static async readUsuario(filtros = {}){
+    // READ ALL
+    // ==============================================================================
+    static async readAllUsuario() {
+        console.log('mainModel.js', 'Usuario.readAllUsuario()');
 
-        // debug da função
-        console.log('mainModel.js','Usuario.readUsuario()')
-        console.log(arguments);
-
-
-        const {id_exemplo,campo1,campo2,campo3} = filtros
- 
-        var query = 'SELECT * FROM tabelaExemplo WHERE '
-        query+= 'id_exemplo LIKE ? '
-        query+= 'AND campo1 LIKE ? '
-        query+= 'AND campo2 LIKE ? '
-        query+= 'AND campo3 LIKE ? '
-        
-
-        return  await dbConnect.executarQuery(query,[`%${id_exemplo||''}%`, `%${campo1||''}%`,`%${campo2||''}%`,`%${campo3||''}%`])
-    }
-
-    static async readUsuario(id){
-
-        // debug da função
-        console.log('mainModel.js','Usuario.readUsuario()')
-        console.log(arguments);
-
-        return await dbConnect.executarQuery('SELECT * FROM tabelaUsuario where id_usuario = ?',[id]);
-
-    }
-
-    //UPDATE
-    //==============================================================================
-    static async updateUsuario(id_usuario,dados = {}){
-        
-        // debug da função
-        console.log('mainModel.js','Usuario.updateUsuario()')
-        console.log(arguments);
-
-        const {campo1,campo2,campo3} = dados
-
-        const query = 'UPDATE tabelaUsuario SET campo1 = ?, campo2 = ?, campo3 = ? WHERE id_usuario = ?';
-
-        return dbExemplo.executarQuery(query,[campo1,campo2,campo3, id]);
-    }
-
-    
-    //DELETE
-    //==============================================================================
-    static async deleteUsuario(id){
-        
-        // debug da função
-        console.log('mainModel.js','Usuario.deleteUsuario()')
-        console.log(arguments);
-
-        return await dbConnect.executarQuery('DELETE FROM tabelaTarefa where id_usuario = ?',[id]);
+        return await dbConnect.executarQuery('SELECT * FROM usuario');
     }
 
 
+    // READ BY ID
+    // ==============================================================================
+    static async readUsuario(id_usuario) {
+        console.log('mainModel.js', 'Usuario.readUsuario()');
+
+        const query = 'SELECT * FROM usuario WHERE Id_usuario = ?';
+        return await dbConnect.executarQuery(query, [id_usuario]);
+    }
+
+
+    // UPDATE
+    // ==============================================================================
+    static async updateUsuario(id_usuario, dados) {
+        console.log('mainModel.js', 'Usuario.updateUsuario()');
+
+        const { Nome_usuario, Email_usuario } = dados;
+
+        const query = `
+            UPDATE usuario
+            SET Nome_usuario = ?,
+                Email_usuario = ?
+            WHERE Id_usuario = ?
+        `;
+
+        return await dbConnect.executarQuery(query, [
+            Nome_usuario,
+            Email_usuario,
+            id_usuario
+        ]);
+    }
+
+
+    // DELETE
+    // ==============================================================================
+    static async deleteUsuario(id_usuario) {
+        console.log('mainModel.js', 'Usuario.deleteUsuario()');
+
+        const query = 'DELETE FROM usuario WHERE Id_usuario = ?';
+        return await dbConnect.executarQuery(query, [id_usuario]);
+    }
 }
 
 module.exports = Usuario;

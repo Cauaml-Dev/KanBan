@@ -14,9 +14,8 @@ async function criarTabelas() {
     await executarQuery(`
       CREATE TABLE IF NOT EXISTS usuario(
         id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-        Nome_usuario VARCHAR(50),
-        Email_usuario VARCHAR(100),
-        Cargo_usuario VARCHAR(50)
+        Nome_usuario VARCHAR(40),
+        Email_usuario VARCHAR(100)
       );
     `);
 
@@ -26,11 +25,12 @@ async function criarTabelas() {
         id_tarefa INT AUTO_INCREMENT PRIMARY KEY,
         Nome_tarefa VARCHAR(100) NOT NULL,
         Descricao_tarefa VARCHAR(150) NOT NULL,
-        Prioridade_tarefa VARCHAR(30) NOT NULL,
+        Prioridade_tarefa ENUM('baixa', 'media', 'alta') NOT NULL DEFAULT 'baixa',
         Status_tarefa ENUM('a fazer', 'em andamento', 'concluido') NOT NULL DEFAULT 'a fazer',
         Data_criacao DATE NOT NULL DEFAULT CURDATE(),
         Data_inicio DATE,
         Data_conclusao DATE,
+        Nome_setor VARCHAR (40) NOT NULL,
         id_usuario INT NOT NULL,
         CONSTRAINT fk_tarefa_usuario
           FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario)

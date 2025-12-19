@@ -1,55 +1,107 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    
+
 <%- include('./partials/head') %>
 
-<body id="body-tarefa">
+    <body id="body-tarefa">
 
-    <header id="header-tarefa">
-        <nav id="nav-tarefa">
-            <div id="titulo-tarefa">
-                Gerenciamento de Tarefas
-            </div>
-        </nav>
-    </header>
+        <header id="header-tarefa">
+            <nav id="nav-tarefa">
+                <div id="titulo-tarefa">Gerenciamento de Tarefas</div>
 
-    <main id="main-tarefa">
-        <h1 id="h1-tarefa">Cadastro de Tarefas</h1>
-
-        <form id="form-tarefa">
-            <div class="form-group">
-                <label for="descricao">Descrição:</label>
-                <input type="text" id="descricao" name="descricao">
-            </div>
-
-            <div class="form-group">
-                <label for="setor">Setor:</label>
-                <input type="text" id="setor" name="setor">
-            </div>
-
-            <div class="form-group">
-                <label for="usuario">Usuário:</label>
-                <select id="usuario" name="usuario">
-                    <option value="ninguem" selected>Ninguém</option>
-                    <option value="joao">João</option>
-                    <option value="maria">Maria</option>
-                    <option value="pedro">Pedro</option>
+                <select name="menu" id="menu-tarefa">
+                    <option value="">Selecione...</option>
+                    <option value="/kanban">Kanban</option>
+                    <option value="/novoUsuario">Novo Usuário</option>
+                    <option value="/novaTarefa">Nova Tarefa</option>
                 </select>
-            </div>
+            </nav>
+        </header>
 
-            <div class="form-group">
-                <label for="prioridade">Prioridade:</label>
-                <select id="prioridade" name="prioridade">
-                    <option value="baixa">Baixa</option>
-                    <option value="media">Média</option>
-                    <option value="alta">Alta</option>
-                </select>
-            </div>
+        <main id="main-tarefa">
+            <h1 id="h1-tarefa">Cadastro de Tarefas</h1>
 
-            <button type="submit" class="btn-submit">Cadastrar</button>
-            <button type="button" class="btn-cancel">Cancelar</button>
-        </form>
-    </main>
+            <form id="form-tarefa" method="POST" action="/tarefas">
 
-    <script src="script.js"></script>
-</body>
+                <!-- TÍTULO -->
+                <div class="form-group">
+                    <label for="titulo">Título da Tarefa:</label>
+                    <input type="text" id="titulo" name="titulo" required>
+                </div>
+
+                <!-- DESCRIÇÃO -->
+                <div class="form-group">
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" rows="4" required></textarea>
+                </div>
+
+                <!-- SETOR -->
+                <div class="form-group">
+                    <label for="setor">Setor:</label>
+                    <input type="text" id="setor" name="setor" required>
+                </div>
+
+                <!-- USUÁRIO RESPONSÁVEL -->
+                <div class="form-group">
+                    <label for="usuario">Usuário:</label>
+                    <select id="usuario" name="Id_usuario">
+                        <option value="">Selecione...</option>
+
+                        <% dados.usuarios.forEach(u=> { %>
+                            <option value="<%= u.id_usuario %>">
+                                <%= u.Nome_usuario %>
+                            </option>
+                            <% }) %>
+                    </select>
+                </div>
+
+                <!-- PRIORIDADE (OPCIONAL) -->
+                <div class="form-group">
+                    <label for="prioridade">Prioridade:</label>
+                    <select id="prioridade" name="prioridade">
+                        <option value="">Nenhuma</option>
+                        <option value="baixa" selected>Baixa</option>
+                        <option value="media">Média</option>
+                        <option value="alta">Alta</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit">Cadastrar</button>
+                <button type="button" class="btn-cancel" onclick="window.location.href='/kanban'">Cancelar</button>
+
+            </form>
+        </main>
+
+        <script>
+            // Validação do formulário
+            const form = document.getElementById("form-tarefa");
+
+            if (form) {
+                form.addEventListener("submit", (e) => {
+                    const titulo = document.getElementById("titulo").value.trim();
+                    const descricao = document.getElementById("descricao").value.trim();
+                    const setor = document.getElementById("setor").value.trim();
+
+                    if (!titulo || !descricao || !setor) {
+                        e.preventDefault();
+                        alert("Preencha título, descrição e setor antes de cadastrar.");
+                    }
+                });
+            }
+
+            // Menu superior
+            const menu = document.getElementById("menu-tarefa");
+
+            if (menu) {
+                menu.addEventListener("change", () => {
+                    if (menu.value !== "") {
+                        window.location.href = menu.value;
+                    }
+                });
+            }
+        </script>
+
+
+    </body>
+
+</html>

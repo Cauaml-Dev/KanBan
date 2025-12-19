@@ -1,100 +1,136 @@
-const dbConnect = require('../db/dbConnect.js')
+const dbConnect = require('../db/dbConnect.js');
 
-// CRUD PARA CADA CLASSE DA TABELA
 class Tarefa {
 
+    // CREATE
+    // ==============================================================================
+    static async createTarefa(dados) {
+        console.log('tarefaModel.js', 'Tarefa.createTarefa()');
 
-    //CREATE
-    //==============================================================================
-    static async createTarefa(dados){
+        const {
+            Nome_tarefa,
+            Status_tarefa,
+            Descricao_tarefa,
+            Prioridade_tarefa,
+            Data_criacao,
+            Data_inicio,
+            Data_conclusao,
+            Nome_setor,
+            Id_usuario
+        } = dados;
 
-        const { Nome_tarefa, Descricao_tarefa, Prioridade_tarefa, Status_tarefa, Data_criacao, Data_inicio, Data_conclusao} = dados //Colocar os atributos da tabela tarefa nn precisa do id
-        // debug da função
-        console.log('mainModel.js','Tarefa.createTarefa()')
-        console.log(arguments);
+        const query = `
+            INSERT INTO tarefa
+            (Nome_tarefa, Status_tarefa, Descricao_tarefa, Prioridade_tarefa, 
+             Data_criacao, Data_inicio, Data_conclusao, Nome_setor, Id_usuario)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
 
-
-        return await dbConnect.executarQuery(
-            'INSERT INTO tabelaTarefa(Nome_tarefa, Descricao_tarefa, Prioridade_tarefa, Status_tarefa, Data_criacao, Data_inicio, Data_conclusao) VALUES (?, ?, ?, ?, ?, ?, ?)', //nn precisa do id
-            [Nome_tarefa, Descricao_tarefa, Prioridade_tarefa, Status_tarefa, Data_criacao, Data_inicio, Data_conclusao]
-        )
-
-    }        
-
-    //READ
-    //==============================================================================
-    static async readAllTarefa(){
-        
-        // debug da função
-        console.log('mainModel.js','Tarefa.readAllTarefa');
-        console.log(arguments);
-
-
-        return await dbConnect.executarQuery('SELECT * FROM tabelaTarefa');
+        return await dbConnect.executarQuery(query, [
+            Nome_tarefa,
+            Status_tarefa,
+            Descricao_tarefa,
+            Prioridade_tarefa,
+            Data_criacao,
+            Data_inicio || null,
+            Data_conclusao || null,
+            Nome_setor,
+            Id_usuario || null
+        ]);
     }
 
+    // READ ALL
+    // ==============================================================================
+    static async readAllTarefa() {
+        console.log('tarefaModel.js', 'Tarefa.readAllTarefa()');
 
-    static async readTarefa(filtros = {}){
+        const query = `
+            SELECT 
+                id_tarefa,
+                Nome_tarefa,
+                Descricao_tarefa,
+                Nome_setor,
+                Id_usuario,
+                Prioridade_tarefa,
+                Data_criacao,
+                Data_conclusao,
+                Status_tarefa
+            FROM tarefa
+        `;
 
-        // debug da função
-        console.log('mainModel.js','Tarefa.readTarefa()')
-        console.log(arguments);
-
-
-        const {id_exemplo,campo1,campo2,campo3} = filtros
- 
-        var query = 'SELECT * FROM tabelaExemplo WHERE '
-        query+= 'id_tarefa LIKE ? '
-        query+= 'AND Nome_tarefa LIKE ? '
-        query+= 'AND Descricao_tarefa LIKE ? '
-        query+= 'AND Prioridade_tarefa LIKE ? '
-        query+= 'AND Status_tarefa LIKE ? '
-        query+= 'AND Data_criacao LIKE ? '
-        query+= 'AND Data_inicio LIKE ? '
-        query+= 'AND Data_conclusao LIKE ? '
-        
-
-        return  await dbConnect.executarQuery(query,[`%${id_tarefa||''}%`, `%${campo1||''}%`,`%${campo2||''}%`,`%${campo3||''}%`])
+        return await dbConnect.executarQuery(query);
     }
 
-    static async readTarefa(id){
+    // READ BY ID
+    // ==============================================================================
+    static async readTarefa(id_tarefa) {
+        console.log('tarefaModel.js', 'Tarefa.readTarefa()');
 
-        // debug da função
-        console.log('mainModel.js','Tarefa.readTarefa()')
-        console.log(arguments);
+        const query = `
+            SELECT 
+                id_tarefa,
+                Nome_tarefa,
+                Descricao_tarefa,
+                Nome_setor,
+                Id_usuario,
+                Prioridade_tarefa,
+                Data_criacao,
+                Data_conclusao,
+                Status_tarefa
+            FROM tarefa
+            WHERE id_tarefa = ?
+        `;
 
-        return await dbConnect.executarQuery('SELECT * FROM tabelaTarefa where id_tarefa = ?',[id]);
-
+        return await dbConnect.executarQuery(query, [id_tarefa]);
     }
 
-    //UPDATE
-    //==============================================================================
-    static async updateTarefa(id_tarefa,dados = {}){
-        
-        // debug da função
-        console.log('mainModel.js','Tarefa.updateTarefa()')
-        console.log(arguments);
+    // UPDATE
+    // ==============================================================================
+    static async updateTarefa(id_tarefa, dados) {
+        console.log('tarefaModel.js', 'Tarefa.updateTarefa()');
 
-        const {campo1,campo2,campo3} = dados
+        const {
+            Nome_tarefa,
+            Descricao_tarefa,
+            Prioridade_tarefa,
+            Data_conclusao,
+            Nome_setor,
+            Id_usuario,
+            Status_tarefa
+        } = dados;
 
-        const query = 'UPDATE tabelaTarefa SET campo1 = ?, campo2 = ?, campo3 = ? WHERE id_tarefa = ?';
+        const query = `
+            UPDATE tarefa
+            SET Nome_tarefa = ?,
+                Descricao_tarefa = ?,
+                Prioridade_tarefa = ?,
+                Data_conclusao = ?,
+                Nome_setor = ?,
+                Id_usuario = ?,
+                Status_tarefa = ?
+            WHERE id_tarefa = ?
+        `;
 
-        return dbConnect.executarQuery(query,[campo1,campo2,campo3, id]);
+        return await dbConnect.executarQuery(query, [
+            Nome_tarefa,
+            Descricao_tarefa,
+            Prioridade_tarefa,
+            Data_conclusao || null,
+            Nome_setor,
+            Id_usuario || null,
+            Status_tarefa,
+            id_tarefa
+        ]);
     }
 
-    
-    //DELETE
-    //==============================================================================
-    static async deleteTarefa(id){
-        
-        // debug da função
-        console.log('mainModel.js','Tarefa.deleteTarefa()')
-        console.log(arguments);
+    // DELETE
+    // ==============================================================================
+    static async deleteTarefa(id_tarefa) {
+        console.log('tarefaModel.js', 'Tarefa.deleteTarefa()');
 
-        return await dbConnect.executarQuery('DELETE FROM tabelaTarefa where id_tarefa = ?',[id]);
+        const query = 'DELETE FROM tarefa WHERE id_tarefa = ?';
+        return await dbConnect.executarQuery(query, [id_tarefa]);
     }
-
-
 }
 
 module.exports = Tarefa;

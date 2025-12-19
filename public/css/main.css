@@ -50,153 +50,258 @@ table {
 /* INICIO DO CSS CUSTOMIZADO                                                                                              */
 /*------------------------------------------------------------------------------------------------------------------------*/
 
-
-/* HEADER DO QUADRO */
+/* ============================
+   HEADER DO QUADRO
+============================ */
 #header-quadro {
-    background: #007bff;          /* Cor de fundo azul do header */
-    color: #fff;                  /* Texto branco */
-    padding: 20px;                /* Espaçamento interno */
-    display: flex;                /* Layout flexível */
-    justify-content: space-between; /* Espaço entre os elementos (logo e menu) */
-    align-items: center;          /* Alinha verticalmente ao centro */
+    background: #007bff;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Título dentro do header */
-#header-quadro h1 {
-    font-size: 22px;              /* Tamanho do título */
+#logo-quadro {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: white;
+    object-fit: cover;
+    padding: 4px;
+    border: 1px solid #ddd;
 }
 
-/* Links dentro do nav do header */
-#header-quadro nav a {
-    color: white;                 /* Cor do texto */
-    margin-left: 20px;            /* Espaço entre os links */
-    text-decoration: none;        /* Remove sublinhado */
-    font-weight: bold;            /* Deixa o texto em negrito */
+#nav-quadro {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-/* ÁREA PRINCIPAL DO QUADRO */
+#titulo-quadro {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+#menu-quadro {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    background-color: #ffffff;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* ============================
+   ÁREA PRINCIPAL
+============================ */
 #main-quadro {
-    padding: 20px;                /* Espaçamento interno */
+    padding: 20px;
 }
 
-/* CONTÊINER DAS COLUNAS DO KANBAN */
 #columns-quadro {
-    display: flex;                /* Colunas lado a lado */
-    gap: 20px;                    /* Espaço entre as colunas */
+    display: flex;
+    gap: 20px;
 }
 
-/* COLUNA "A FAZER" */
-#todo {
-    border-radius: 10px;          /* Bordas arredondadas */
-    height: 750px;                /* Altura fixa da coluna */
-    background-color: #d9534f;    /* Vermelho */
-    width: 33%;                   /* Ocupa 1/3 da largura */
-}
 
-/* COLUNA "FAZENDO" */
-#doing {
-    border-radius: 10px;
-    height: 750px;
-    background-color: #fbff00;    /* Amarelo */
+/* ============================
+   COLUNAS DO KANBAN
+============================ */
+.task-column {
     width: 33%;
-}
-
-/* COLUNA "PRONTO" */
-#done {
-    border-radius: 10px;
     height: 750px;
-    background-color: #28a745;    /* Verde */
-    width: 33%;
+    border-radius: 12px;
+    padding: 15px;
+    overflow-y: auto;
 }
 
-/* CARTÕES DE TAREFA */
+.task-column-todo {
+    background-color: #ffdddd;
+}
+
+.task-column-doing {
+    background-color: #fff8c6;
+}
+
+.task-column-done {
+    background-color: #d4f8d4;
+}
+
+.task-column h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+
+/* ============================
+   CARTÕES DE TAREFA
+============================ */
 .task-card {
-    background: white;            /* Fundo branco */
-    padding: 15px;                /* Espaçamento interno */
-    border-radius: 8px;           /* Bordas arredondadas */
-    margin-top: 10px;             /* Espaço entre os cards */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform .2s ease;
 }
 
-/* CONTÊINER DOS BOTÕES DE AÇÃO */
-.actions {
-    margin-top: 10px;             /* Espaço acima */
-    display: flex;                /* Botões lado a lado */
-    gap: 10px;                    /* Espaço entre eles */
+.task-card:hover {
+    transform: scale(1.02);
 }
 
-/* ESTILO PADRÃO DOS BOTÕES */
-button {
-    padding: 6px 12px;            /* Tamanho do botão */
-    border: none;                 /* Remove borda padrão */
-    border-radius: 4px;           /* Bordas arredondadas */
-    cursor: pointer;              /* Cursor de clique */
+.task-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #222;
 }
 
-/* BOTÃO DE EDITAR */
-.edit {
-    background: #0a66c2;          /* Azul */
-    color: white;                 /* Texto branco */
+.task-desc {
+    font-size: 14px;
+    color: #444;
+    margin: 6px 0;
 }
 
-/* BOTÃO DE DELETAR */
-.delete {
-    background: #d9534f;          /* Vermelho */
+.task-priority {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.task-setor,
+.task-date {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+/* Prioridades */
+.task-card[data-prioridade="baixa"] .task-priority {
+    background-color: #d0f0d0;
+    color: #2e7d32;
+}
+
+.task-card[data-prioridade="media"] .task-priority {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.task-card[data-prioridade="alta"] .task-priority {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+
+/* ============================
+   BOTÕES DOS CARDS
+============================ */
+.task-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-mover,
+.btn-editar {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-mover {
+    background: #0a66c2;
     color: white;
 }
 
-/* SELECT PARA MUDAR STATUS */
-.status-select {
-    width: 100%;                  /* Ocupa toda a largura */
-    margin-top: 10px;             /* Espaço acima */
-    padding: 6px;                 /* Espaçamento interno */
+.btn-mover:hover {
+    background: #084a8c;
 }
 
-/* BOTÃO PARA CONFIRMAR MUDANÇA DE STATUS */
-.change-status {
-    margin-top: 5px;
-    width: 100%;                  /* Botão ocupa toda a largura */
-    background: #28a745;          /* Verde */
-    color: white;
+.btn-editar {
+    background: #ffb300;
+    color: #222;
 }
 
-/* BOTÃO DE ADICIONAR NOVA TAREFA */
+.btn-editar:hover {
+    background: #ff9800;
+}
+
+
+/* ============================
+   BOTÃO DE ADICIONAR TAREFA
+============================ */
 .add-btn {
-    background: #28a745;          /* Verde */
+    background: #28a745;
     color: white;
-    padding: 10px 20px;           /* Tamanho maior */
-    margin-bottom: 20px;          /* Espaço abaixo */
-    font-size: 16px;              /* Texto maior */
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
-/* TÍTULOS DAS COLUNAS */
-h3 {
-    margin-top: 20px;             /* Espaço acima */
-    text-align: center;           /* Centraliza o texto */
+.add-btn:hover {
+    background: #1e7e34;
 }
+
 
 /* ================================
    HEADER DO CADASTRO
 ================================ */
+#body-cadastro{
+overflow-x: hidden;
+display: flex;
+flex-direction: column;
+}
+
 #header-cadastro {
-    background-color: #007bff; /* Azul brilhante */
+    background-color: #007bff;
     color: white;
     padding: 15px 30px;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* nav à esquerda, select à direita */
+    align-items: space-between;
+}
+
+#header-cadastro select{
+    margin-right: 50px;
 }
 
 #nav-cadastro {
     display: flex;
-    justify-content: space-between; /* Título na esquerda, links na direita */
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto; /* Centraliza o conteúdo da navegação */
+    gap: 15px;
 }
 
 #titulo-cadastro {
-    font-size: 1.5rem; /* 24px */
+    font-size: 1.5rem;
     font-weight: bold;
 }
+
+#menu-usuario {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: none;
+    background-color: #ffffff;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 
 /* Botão de sair (se existir no futuro) */
 .bnt-exit {
@@ -288,29 +393,54 @@ h3 {
     background-color: #ac2a0a;
 }
 
+
 /* ================================
    HEADER DO CADASTRO DE TAREFAS
 ================================ */
+#body-tarefa{
+overflow-x: hidden;
+display: flex;
+flex-direction: column;
+}
+
 #header-tarefa {
-    background-color: #007bff; /* Azul brilhante */
+    background-color: #007bff;
     color: white;
     padding: 15px 30px;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* nav à esquerda, select à direita */
+    align-items: center;
+}
+
+#header-tarefa select{
+    margin-right: 50px;
+}
+
+#menu-tarefa {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: none;
+    background-color: #ffffff;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 #nav-tarefa {
     display: flex;
     justify-content: space-between; /* Título na esquerda, links na direita */
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto; /* Centraliza o conteúdo da navegação */
+    width: 100%;
+    /*margin: 0 auto; /* Centraliza o conteúdo da navegação */
 }
 
 #titulo-tarefa {
-    font-size: 1.5rem; /* 24px */
+    font-size: 1.5rem;
     font-weight: bold;
 }
-
 /* Botão de sair (caso exista) */
 .bnt-exit {
     background-color: #dc3545;
@@ -399,4 +529,221 @@ h3 {
 
 .btn-cancel:hover {
     background-color: #ac2a0a;
+}
+
+/* ================================
+   MODAL DE EDIÇÃO DE TAREFAS
+================================ */
+
+/* Fundo escuro */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Caixa do modal */
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.modal-content h2 {
+    margin-bottom: 15px;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-save {
+    background: #28a745;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-close {
+    background: #d9534f;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ============================
+   DRAG & DROP — ESTILOS
+============================ */
+
+/* Cards arrastáveis */
+.task-card[draggable="true"] {
+    cursor: grab;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+/* Feedback ao arrastar */
+.task-card.dragging {
+    opacity: 0.4;
+    transform: scale(1.03);
+    border: 2px dashed #007bff;
+}
+
+/* Feedback ao passar sobre coluna */
+.task-column.drag-over {
+    background: #d9eaff;
+    border: 2px dashed #007bff;
+    transition: background 0.2s, border 0.2s;
+}
+
+/* Área das colunas */
+.task-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 300px;
+    flex-grow: 1;       /* ocupa espaço proporcional */
+    padding: 10px;      /* garante área de drop mesmo vazia */
+    border-radius: 12px;
+    overflow-y: auto;
+}
+
+/* Títulos não bloqueiam drop */
+.task-column h3 {
+    pointer-events: none;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* Cards padrão */
+.task-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform .2s ease;
+}
+
+.task-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.task-card:active {
+    cursor: grabbing;
+}
+
+/* Título e descrição */
+.task-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #222;
+}
+
+.task-desc {
+    font-size: 14px;
+    color: #444;
+    margin: 6px 0;
+}
+
+/* Prioridade */
+.task-priority {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.task-card[data-prioridade="baixa"] .task-priority {
+    background-color: #d0f0d0;
+    color: #2e7d32;
+}
+
+.task-card[data-prioridade="media"] .task-priority {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.task-card[data-prioridade="alta"] .task-priority {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Botões */
+.task-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-editar {
+    background: #ffb300;
+    color: #222;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-editar:hover {
+    background: #ff9800;
+}
+
+/* Cards concluídos */
+.task-card.concluido {
+    background-color: #f0f0f0; /* cinza claro */
+    color: #666;              /* texto mais apagado */
+    opacity: 0.85;            /* levemente transparente */
+}
+
+.task-card.concluido .task-title {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Bnt exluir tarefa */
+.btn-delete {
+    background: #dc3545;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-delete:hover {
+    background: #a71d2a;
 }

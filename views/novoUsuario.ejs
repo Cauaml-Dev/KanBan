@@ -7,16 +7,22 @@
 
     <header id="header-cadastro">
         <nav id="nav-cadastro">
-            <img id="logo-cadastro" src="" alt="logo">
             <div id="titulo-cadastro">
                 Cadastro de Usuario
             </div>
         </nav>
+
+        <select name="menu" id="menu-usuario">
+            <option value="">Selecione...</option>
+            <option value="/kanban">Kanban</option>
+            <option value="/novoUsuario">Novo Usuario</option>
+            <option value="/novaTarefa">Nova Tarefa</option>
+        </select>
     </header>
 
     <main id="main-cadastro">
 
-        <form id="form-cadastro">
+        <form id="form-cadastro"  method="POST" action="/usuarios">
             <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome">
@@ -33,5 +39,16 @@
 
     </main>
 
+    <script>
+        const menu = document.getElementById('menu-usuario');
+
+        menu.addEventListener('change', () => {
+            if (menu.value) {
+                window.location.href = menu.value;
+            }
+        });
+    </script>
+
 </body>
+
 </html>
